@@ -1,39 +1,79 @@
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Progress } from "@/components/ui/progress";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 import { motion } from "framer-motion";
-import { Download, FileCode, Code2, Atom, Brain, Server, Database } from "lucide-react";
+import { Download, FileCode, Atom, Brain, Bot, Database, Table2, BarChart3 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 
+// Data science first, then engineering. The section should read as a data
+// scientist who can ship, not a web developer who dabbles in ML.
 const skills = [
-  "JavaScript/TypeScript",
   "Python",
-  "React",
-  "Node.js",
-  "PostgreSQL",
-  "MongoDB",
+  "pandas",
+  "NumPy",
+  "scikit-learn",
+  "SQL",
+  "R",
   "TensorFlow",
   "PyTorch",
+  "Power BI",
+  "PostgreSQL",
+  "Supabase",
+  "MongoDB",
+  "JavaScript/TypeScript",
+  "React",
+  "Node.js",
+  "Java",
   "Docker",
+  "Git",
 ];
 
-type SkillItem = { name: string; subtitle: string; v: number; Icon: LucideIcon };
+/** Every skill is paired with the work that demonstrates it. A claim without
+ *  evidence is worth less than no claim at all. */
+type SkillItem = { name: string; evidence: string; Icon: LucideIcon };
 const detailedSkills: SkillItem[] = [
-  { name: "Python", subtitle: "Data Science", v: 89, Icon: FileCode },
-  { name: "Machine Learning", subtitle: "AI & Algorithms", v: 82, Icon: Brain },
-  { name: "JavaScript", subtitle: "Frontend & Full-Stack", v: 80, Icon: Code2 },
-  { name: "React", subtitle: "UI Framework", v: 78, Icon: Atom },
-  { name: "Node.js", subtitle: "Backend Runtime", v: 65, Icon: Server },
-  { name: "Databases", subtitle: "SQL & NoSQL", v: 70, Icon: Database },
+  {
+    name: "Python",
+    evidence: "Flood risk model, asteroid orbit classifier, procurement pipeline automation",
+    Icon: FileCode,
+  },
+  {
+    name: "Machine Learning",
+    evidence: "Time-series forecasting, classification, feature engineering, model validation",
+    Icon: Brain,
+  },
+  {
+    name: "pandas & NumPy",
+    evidence: "EDA, cleaning and consolidation across supplier, purchasing and orbital datasets",
+    Icon: Table2,
+  },
+  {
+    name: "SQL & PostgreSQL",
+    evidence: "WashCO booking platform on Supabase; multi-source procurement data consolidation",
+    Icon: Database,
+  },
+  {
+    name: "Data Visualisation",
+    evidence: "Flood decision dashboard; Power BI and Matplotlib reporting on supplier data",
+    Icon: BarChart3,
+  },
+  {
+    name: "LLM tooling & n8n",
+    evidence: "PodBang podcast automation agent, AI Code Reviewer",
+    Icon: Bot,
+  },
+  {
+    name: "React & Node.js",
+    evidence: "WashCO, PodBang, Pet Universe, this site",
+    Icon: Atom,
+  },
 ];
 
 const stats = [
-  { label: "Certifications", value: "3" },
-  { label: "Years of Experience", value: "2+" },
-  { label: "Technologies Mastered", value: "12" },
-  { label: "Passion‑Driven", value: "100%" },
+  { value: "3.56", label: "CGPA — BSc (Hons) Data Science, SLIIT" },
+  { value: "2027", label: "Expected graduation" },
+  { value: "2+", label: "Years building data-driven systems" },
 ];
 
 const About = () => {
@@ -61,7 +101,7 @@ const About = () => {
               </div>
 
               {/* Quick Stats */}
-              <div className="grid grid-cols-2 gap-3 sm:gap-4" aria-label="Quick stats">
+              <div className="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-1 gap-3 sm:gap-4" aria-label="Quick stats">
                 {stats.map((s) => (
                   <motion.div
                     key={s.label}
@@ -87,7 +127,7 @@ const About = () => {
                 viewport={{ once: true, amount: 0.3 }}
                 transition={{ duration: 0.35 }}
               >
-                My journey began in the world of data science, where I discovered the power of transforming raw information into actionable insights. What started as curiosity about patterns in data evolved into a passion for building complete solutions that bridge analytical precision with user-centered design.
+                I&apos;m in my final year of a BSc (Hons) in Information Technology at SLIIT, specialising in Data Science, with a CGPA of 3.56. My coursework runs through machine learning, data mining, big data analytics, database systems and cloud-driven solutions.
               </motion.p>
               <motion.p
                 className="text-muted-foreground leading-relaxed"
@@ -96,7 +136,7 @@ const About = () => {
                 viewport={{ once: true, amount: 0.3 }}
                 transition={{ duration: 0.35, delay: 0.05 }}
               >
-                Today, I specialize in creating intelligent applications that don&apos;t just process data—they tell stories, solve problems, and enhance human experiences. My approach combines rigorous analytical thinking with creative problem-solving, ensuring every solution is both technically sound and intuitively accessible.
+                My undergraduate research is on satellite-based flood risk assessment for Sri Lanka. I own the predictive risk modelling and the decision dashboard: the model forecasts flood events ahead of time from environmental data, validated against recorded historical floods, and the dashboard turns those forecasts into something a responder can act on.
               </motion.p>
               <motion.p
                 className="text-muted-foreground leading-relaxed"
@@ -105,7 +145,7 @@ const About = () => {
                 viewport={{ once: true, amount: 0.3 }}
                 transition={{ duration: 0.35, delay: 0.1 }}
               >
-                Currently expanding into machine learning and AI, I&apos;m fascinated by the intersection of traditional development and emerging technologies. Every project is an opportunity to push boundaries and create something meaningful.
+                Alongside the degree I work as Purchasing Manager at Sillara Agri Tech, where I replaced a manual, multi-step daily procurement pricing process with an automated pipeline and built the margin logic across fresh produce and packaged goods. Most of my day-to-day data work — cleaning, validation, consolidating sources, EDA — comes from there. I&apos;m looking for a data science or machine learning internship.
               </motion.p>
 
               {/* Actions */}
@@ -114,7 +154,7 @@ const About = () => {
                   <TooltipTrigger asChild>
                     <a
                       href="/lovable-uploads/Eyaas-CV.jpg"
-                      download="Eyaas-Ajmal-CV.png"
+                      download="Eyaas-Ajmal-CV.jpg"
                       aria-label="Download professional resume"
                     >
                       <Button className="hover-scale">
@@ -145,7 +185,8 @@ const About = () => {
 
           {/* Skills & Proficiency */}
           <section className="mt-10">
-            <h3 className="text-xl font-semibold mb-4">Skills &amp; Proficiency</h3>
+            <h3 className="text-xl font-semibold mb-1">Skills</h3>
+            <p className="text-sm text-muted-foreground mb-4">Where I&apos;ve actually used each one.</p>
             <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-5">
               {detailedSkills.map((s, i) => (
                 <motion.article
@@ -156,29 +197,15 @@ const About = () => {
                   transition={{ duration: 0.35, delay: i * 0.05 }}
                   className="rounded-2xl border border-primary/20 bg-card/60 p-4 sm:p-5 shadow-sm hover:shadow-[var(--shadow-glow)] hover-scale"
                 >
-                  <div className="flex items-start justify-between gap-3">
-                    <div className="flex items-start gap-3">
-                      <div className="h-10 w-10 rounded-lg bg-gradient-to-br from-primary/15 to-accent/15 grid place-items-center border border-primary/20">
-                        <s.Icon className="h-5 w-5 text-primary" aria-hidden />
-                      </div>
-                      <div>
-                        <h4 className="font-semibold">{s.name}</h4>
-                        <p className="text-xs text-muted-foreground">{s.subtitle}</p>
-                      </div>
+                  <div className="flex items-start gap-3">
+                    <div className="h-10 w-10 shrink-0 rounded-lg bg-gradient-to-br from-primary/15 to-accent/15 grid place-items-center border border-primary/20">
+                      <s.Icon className="h-5 w-5 text-primary" aria-hidden />
                     </div>
-                    <div className="text-right">
-                      <div className="text-2xl font-bold text-primary">{s.v}%</div>
-                      <div className="text-xs text-muted-foreground">Proficiency</div>
+                    <div>
+                      <h4 className="font-semibold">{s.name}</h4>
+                      <p className="text-sm text-muted-foreground mt-1 leading-relaxed">{s.evidence}</p>
                     </div>
                   </div>
-                  <motion.div
-                    initial={{ opacity: 0 }}
-                    whileInView={{ opacity: 1 }}
-                    viewport={{ once: true, amount: 0.6 }}
-                    transition={{ duration: 0.5, delay: i * 0.05 }}
-                  >
-                    <Progress value={s.v} className="mt-3" />
-                  </motion.div>
                 </motion.article>
               ))}
             </div>

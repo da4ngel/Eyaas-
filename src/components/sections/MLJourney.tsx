@@ -6,41 +6,28 @@ gsap.registerPlugin(ScrollTrigger);
 
 const steps = [
   {
-    year: "2025",
-    title: "Agentic AI",
-    subtitle: "Current Focus",
-    details: "DeepSeek, OpenAI, Anthropic, Gemini, Claude, Qwen, Llama, etc.",
-    status: [
-      { label: "In Progress", tone: "primary" },
-      { label: "~35%", tone: "primary" },
-    ],
-  },
-  {
-    year: "2025",
-    title: "Advanced Deep Learning",
-    subtitle: "Current Focus",
-    details: "Transformers, CS231n, optimization & scaling laws",
-    status: [
-      { label: "In Progress", tone: "primary" },
-      { label: "~25%", tone: "primary" },
-    ],
+    year: "2026",
+    title: "Undergraduate Research",
+    subtitle: "Current",
+    details:
+      "Satellite-based flood risk assessment for Sri Lanka. I own the predictive risk model and the decision dashboard built over it.",
+    status: [{ label: "In Progress", tone: "primary" }],
   },
   {
     year: "2024",
-    title: "Machine Learning Fundamentals",
-    subtitle: "Foundation Year",
-    details: "Andrew Ng, Python for Data Science, end‑to‑end ML",
-    status: [
-      { label: "Completed", tone: "success" },
-      { label: "Certified", tone: "primary" },
-    ],
+    title: "Purchasing Manager — Sillara Agri Tech",
+    subtitle: "Present",
+    details:
+      "Automated the daily procurement pricing workflow, replacing a manual multi-step process. Built the margin logic across fresh produce and packaged goods.",
+    status: [{ label: "Current role", tone: "success" }],
   },
   {
     year: "2023",
-    title: "Data Science Bootcamp",
-    subtitle: "Data Science Start",
-    details: "Statistics, Pandas, NumPy, visualization & EDA",
-    status: [{ label: "Completed", tone: "success" }],
+    title: "BSc (Hons) IT — Data Science, SLIIT",
+    subtitle: "Expected 2027",
+    details:
+      "Machine learning, data mining, big data analytics, database systems, cloud-driven solutions. CGPA 3.56.",
+    status: [{ label: "Final year", tone: "primary" }],
   },
 ];
 
@@ -77,9 +64,9 @@ const MLJourney = () => {
     <section id="ml" className="py-16 sm:py-24">
       <div className="container mx-auto px-4">
         <header className="text-center mb-12 sm:mb-16">
-          <h2 className="text-3xl sm:text-4xl font-semibold bg-gradient-to-r from-green-400 to-blue-500 bg-clip-text text-transparent">Learning Curve</h2>
+          <h2 className="text-3xl sm:text-4xl font-semibold bg-gradient-to-r from-green-400 to-blue-500 bg-clip-text text-transparent">Education &amp; Experience</h2>
           <p className="text-muted-foreground mt-3 max-w-2xl mx-auto">
-            A continuous evolution through ML/AI—from foundations to advanced research and deployment.
+            Where I study, where I work, and what I&apos;m researching.
           </p>
         </header>
 

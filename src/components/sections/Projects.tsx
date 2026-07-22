@@ -1,51 +1,95 @@
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
-import { Github, Linkedin, ExternalLink } from "lucide-react";
+import { Github, Linkedin, ExternalLink, Globe } from "lucide-react";
 
-const projects = [
+// Ordered by relevance to data science: research first, then ML/AI work,
+// then full-stack. Every entry states the problem it solves and the approach
+// taken, not just the stack.
+type Project = {
+  title: string;
+  year: string;
+  problem: string;
+  approach: string;
+  stack: string[];
+  githubUrl: string;
+  linkedInUrl: string;
+  demoUrl?: string;
+};
+
+const projects: Project[] = [
   {
-    title: "PodBang – Agentic AI Podcast Automation Platform",
-    stack: ["LLMs", "API" , "N8N", "Prompt Engineering", "React", "node"],
-    description: "PodBang is an Agentic AI-powered platform that automates the end-to-end podcast creation workflow. It intelligently plans, generates, refines, and publishes podcast content with minimal human intervention by using autonomous AI agents.",
+    title: "Flood Risk Prediction & Decision Dashboard",
+    year: "2026",
+    problem:
+      "Flood warnings in Sri Lanka often arrive too late to act on, and the data behind them is not in a form responders can use.",
+    approach:
+      "Undergraduate research project. I own the predictive risk model, which forecasts flood events ahead of time from environmental data and is validated against recorded historical floods, plus the decision dashboard built over its output.",
+    stack: ["Python", "scikit-learn", "pandas", "NumPy", "Time-series forecasting", "Matplotlib"],
+    githubUrl: "",
+    linkedInUrl: "",
+  },
+  {
+    title: "Asteroid Orbit Viewer",
+    year: "2025",
+    problem:
+      "Raw orbital element data says little about which near-Earth objects actually pose an impact risk.",
+    approach:
+      "Trained scikit-learn models on orbital datasets to predict Earth-impact risk, then built an interactive visualisation layer over the model outputs so the predictions can be explored rather than just read.",
+    stack: ["Python", "scikit-learn", "pandas", "NumPy", "Classification", "JavaScript"],
+    githubUrl: "",
+    linkedInUrl: "",
+  },
+  {
+    title: "AI Code Reviewer",
+    year: "2025",
+    problem: "Code review is a bottleneck, and much of the first pass is mechanical.",
+    approach:
+      "An LLM-based review assistant that analyses code quality, suggests refactors, and translates between languages.",
+    stack: ["LLM APIs", "Prompt engineering", "Python", "React"],
+    githubUrl: "",
+    linkedInUrl: "",
+  },
+  {
+    title: "PodBang – Agentic AI Podcast Automation",
+    year: "2025",
+    problem:
+      "Producing a podcast episode means repeating the same planning, scripting and publishing steps every time.",
+    approach:
+      "An agentic AI platform that automates the end-to-end podcast workflow — autonomous agents plan, generate, refine and publish episode content with minimal human intervention.",
+    stack: ["LLM APIs", "n8n", "Prompt engineering", "React", "Node.js"],
     githubUrl: "https://github.com/Eyaas-Ajmal/pod-AI",
     linkedInUrl: "https://www.linkedin.com/posts/eyaasajmal_ai-agenticai-automation-activity-7399622920106332160-VWfj?utm_source=share&utm_medium=member_desktop&rcm=ACoAAEIKCqoBFFLCLy__iBN0AHNFDrJYuEN2WAo",
   },
   {
+    title: "WashCO",
+    year: "2026",
+    problem:
+      "Car wash vendors and customers had no shared system for booking time slots, so scheduling was manual and double-bookings were common.",
+    approach:
+      "Multi-vendor booking platform with slot-based scheduling, vendor management and role-based access control.",
+    stack: ["React", "Node.js", "Express", "PostgreSQL", "Supabase"],
+    githubUrl: "",
+    linkedInUrl: "",
+  },
+  {
     title: "Pet Universe",
-    stack: ["React", "Node.js", "Express", "MongoDB", "Tailwind CSS", "Redux", "JWT", "Stripe","GIT"],
-    description: "A full‑stack social and marketplace platform for pet lovers.",
+    year: "",
+    problem: "Pet owners had nowhere to both connect with each other and buy supplies.",
+    approach: "Full-stack social and marketplace platform combining a community feed with payments.",
+    stack: ["React", "Node.js", "Express", "MongoDB", "Redux", "JWT", "Stripe"],
     githubUrl: "",
     linkedInUrl: "",
   },
   {
     title: "Smart Ticket Support System",
-    stack: ["React", "Node.js", "Express", "MongoDB", "Tailwind CSS", "Redux", "JWT", "Stripe", "Python", "Flask", "MySQL"],
-    description: "A smart ticket support system for managing customer queries and support tickets.",
+    year: "",
+    problem: "Customer queries arriving through several channels were tracked inconsistently.",
+    approach: "Ticket management system routing and tracking support requests through to resolution.",
+    stack: ["React", "Node.js", "Express", "MongoDB", "Python", "Flask", "MySQL"],
     githubUrl: "",
     linkedInUrl: "",
   },
-  {
-    title: "Library Management System",
-    stack: ["PHP", "HTML", "CSS", "JavaScript","GIT"],
-    description: "A complete library system with cataloging, lending, and admin dashboards.",
-    githubUrl: "",
-    linkedInUrl: "",
-  },
-  {
-    title: "Computer Inventory Management",
-    stack: ["Java", "MySQL", "JDBC", "Tomcat","GIT"],
-    description: "Track hardware assets, lifecycle, and utilization with reports.",
-    githubUrl: "",
-    linkedInUrl: "",
-  },
-  {
-    title: "My Portfolio Website",
-    stack: ["React", "Tailwind CSS", "Vite", "TypeScript", "Shadcn UI", "Framer Motion", "Vercel", "GSAP","GIT"],
-    description: "My Portfolio Website, your viewing it currently",
-    githubUrl: "",
-    linkedInUrl: "",
-  }
 ];
 
 const ProjectCard = ({ p }: { p: (typeof projects)[number] }) => {
@@ -73,8 +117,11 @@ const ProjectCard = ({ p }: { p: (typeof projects)[number] }) => {
       transition={{ type: "spring", stiffness: 300, damping: 20 }}
     >
       <div>
-        <h3 className="text-xl font-semibold mb-2">{p.title}</h3>
-        <p className="text-muted-foreground mb-4">{p.description}</p>
+        <div className="flex items-baseline justify-between gap-3 mb-2">
+          <h3 className="text-xl font-semibold">{p.title}</h3>
+          {p.year && <span className="text-xs text-muted-foreground shrink-0">{p.year}</span>}
+        </div>
+        <p className="text-muted-foreground mb-4">{p.problem}</p>
         <div className="flex flex-wrap gap-2">
           {p.stack.map((t) => (
             <span key={t} className="text-xs px-2 py-1 rounded-full bg-secondary/60 border border-border">{t}</span>
@@ -91,12 +138,24 @@ const ProjectCard = ({ p }: { p: (typeof projects)[number] }) => {
               <DialogTitle>{p.title}</DialogTitle>
             </DialogHeader>
             <div className="space-y-4">
-              <div className="space-y-2 text-sm text-muted-foreground">
-                <p>{p.description}</p>
-                <p><span className="text-foreground">Tech:</span> {p.stack.join(", ")}</p>
+              <div className="space-y-3 text-sm text-muted-foreground">
+                <p><span className="text-foreground font-medium">Problem:</span> {p.problem}</p>
+                <p><span className="text-foreground font-medium">Approach:</span> {p.approach}</p>
+                <p><span className="text-foreground font-medium">Tools:</span> {p.stack.join(", ")}</p>
               </div>
-              {((p.githubUrl && p.githubUrl.trim() !== "") || (p.linkedInUrl && p.linkedInUrl.trim() !== "")) && (
+              {((p.githubUrl && p.githubUrl.trim() !== "") || (p.linkedInUrl && p.linkedInUrl.trim() !== "") || (p.demoUrl && p.demoUrl.trim() !== "")) && (
                 <div className="flex flex-wrap gap-3 pt-2">
+                  {p.demoUrl && p.demoUrl.trim() !== "" && (
+                    <Button
+                      variant="outline"
+                      className="flex items-center gap-2"
+                      onClick={() => window.open(p.demoUrl, "_blank", "noopener,noreferrer")}
+                    >
+                      <Globe className="w-4 h-4" />
+                      Live Demo
+                      <ExternalLink className="w-3 h-3" />
+                    </Button>
+                  )}
                   {p.githubUrl && p.githubUrl.trim() !== "" && (
                     <Button
                       variant="outline"

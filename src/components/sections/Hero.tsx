@@ -21,8 +21,8 @@ const Hero = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="text-2xl sm:text-3xl md:text-4xl tracking-tight font-medium text-muted-foreground/80 bg-gradient-to-r from-green-400 to-blue-500 bg-clip-text text-transparent">
-            Full Stack AI-ML Engineer
+            className="text-2xl sm:text-3xl md:text-4xl tracking-tight font-medium bg-gradient-to-r from-green-400 to-blue-500 bg-clip-text text-transparent">
+            Machine learning for flood risk in Sri Lanka
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -30,7 +30,9 @@ const Hero = () => {
             transition={{ duration: 0.7, delay: 0.1 }}
             className="mt-5 text-lg sm:text-xl text-muted-foreground"
           >
-            Building intelligent full-stack solutions with code, data, and creativity.
+            Final-year Data Science undergraduate at SLIIT. I build forecasting models on real
+            environmental data — and the dashboards that make them usable. Looking for a data
+            science / machine learning internship.
           </motion.p>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
