@@ -16,7 +16,6 @@ const skills = [
   "SQL",
   "R",
   "TensorFlow",
-  "PyTorch",
   "Power BI",
   "PostgreSQL",
   "Supabase",
@@ -25,7 +24,6 @@ const skills = [
   "React",
   "Node.js",
   "Java",
-  "Docker",
   "Git",
 ];
 

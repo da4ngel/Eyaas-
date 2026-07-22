@@ -19,11 +19,14 @@ const items: Item[] = [
     type: "Course",
   },
   {
-    title: "DeepLearning.AI – Machine Learning Specialization",
-    issuer: "Andrew Ng",
+    title: "Machine Learning Specialization",
+    issuer: "DeepLearning.AI & Stanford Online (Coursera)",
     year: "2024",
     type: "Certification",
-    link: "https://www.coursera.org/specializations/machine-learning-introduction",
+    // No link: the previous URL pointed at the Coursera sales page for the
+    // course, not a credential. Under a "Certification" badge that reads as
+    // proof of completion when it proves nothing. Replace with the real
+    // credential URL (coursera.org/account/accomplishments/...).
   },
   {
     title: "Data Science Bootcamp",
