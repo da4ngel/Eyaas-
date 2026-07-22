@@ -53,7 +53,7 @@ const About = () => {
                 <AspectRatio ratio={3 / 4}>
                   <img
                     src="/lovable-uploads/80607c52-3ca7-47d9-bf90-c7ccf791a76e.png"
-                    alt="Professional profile portrait"
+                    alt="Eyaas Ajmal, Data Science undergraduate at SLIIT"
                     className="h-full w-full rounded-xl object-cover"
                     loading="lazy"
                   />

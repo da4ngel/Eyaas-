@@ -6,6 +6,9 @@ const CursorGlow = () => {
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
+    // No point running a requestAnimationFrame loop for an effect that CSS
+    // hides when the user has asked for reduced motion.
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     let raf = 0;
     let x = 0, y = 0;
 

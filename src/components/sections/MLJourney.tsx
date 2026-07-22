@@ -46,6 +46,11 @@ const steps = [
 
 const MLJourney = () => {
   useEffect(() => {
+    // GSAP is not driven by CSS, so the global prefers-reduced-motion rule in
+    // index.css cannot stop these scroll-triggered entrances. Skip them and
+    // leave the steps in their final state.
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
     const ctx = gsap.context(() => {
       gsap.utils.toArray<HTMLElement>(".jl-step").forEach((el, i) => {
         gsap.fromTo(

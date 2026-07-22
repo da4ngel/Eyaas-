@@ -107,6 +107,15 @@ All colors MUST be HSL.
     @apply bg-background text-foreground;
   }
 
+  /* Visible keyboard focus. The raw <a> elements in the header nav and the
+     contact social links carry no component-level focus styling, so without
+     this the site is untraversable by keyboard. */
+  :focus-visible {
+    outline: 2px solid theme("colors.green.400");
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
   /* Additional design tokens */
   :root {
     --primary-glow: 222.2 84% 60%;
@@ -181,5 +190,31 @@ All colors MUST be HSL.
     background: radial-gradient(closest-side, hsl(var(--accent) / 0.15), transparent);
     z-index: 10;
     mix-blend-mode: screen;
+  }
+}
+
+/* Respect prefers-reduced-motion. Framer Motion is handled separately via
+   <MotionConfig reducedMotion="user"> in App.tsx, and GSAP via a matchMedia
+   guard in MLJourney.tsx, since neither is driven by CSS. */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .cursor-glow {
+    display: none;
+  }
+
+  .hover-scale:hover {
+    transform: none;
   }
 }

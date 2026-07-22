@@ -56,9 +56,10 @@ const Hero = () => {
           transition={{ duration: 0.8 }}
           className="relative"
         >
-          <SplineScene 
+          <SplineScene
             scene="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode"
             className="w-full h-[320px] sm:h-[420px] md:h-[520px]"
+            label="Interactive 3D illustration of a robot that follows your cursor"
           />
         </motion.div>
       </div>
