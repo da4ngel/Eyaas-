@@ -183,7 +183,7 @@ const About = () => {
             </div>
           </div>
 
-          {/* Skills & Proficiency */}
+          {/* Skills, each paired with the work that evidences it */}
           <section className="mt-10">
             <h3 className="text-xl font-semibold mb-1">Skills</h3>
             <p className="text-sm text-muted-foreground mb-4">Where I&apos;ve actually used each one.</p>

@@ -105,11 +105,13 @@ const MLJourney = () => {
                     )}
                   </div>
 
-                  {/* Middle dot */}
-                  <div className="md:col-span-2 order-1 md:order-2 flex md:block justify-center">
-                    <div className="relative">
-                      <span className="block h-3 w-3 rounded-full bg-white ring-4 ring-background" />
-                    </div>
+                  {/* Middle marker: year, dot, subtitle. Kept in the centre grid
+                      column so it lines up with the vertical rule at every
+                      breakpoint. */}
+                  <div className="md:col-span-2 order-1 md:order-2 flex flex-col items-center justify-center gap-2">
+                    <div className="text-sm font-semibold text-white">{s.year}</div>
+                    <span className="block h-3 w-3 rounded-full bg-white ring-4 ring-background" />
+                    <div className="text-xs text-muted-foreground text-center">{s.subtitle}</div>
                   </div>
 
                   {/* Right column (content on right for odd rows) */}
@@ -138,18 +140,6 @@ const MLJourney = () => {
                     )}
                   </div>
 
-                  {/* Year labels under on small screens */}
-                  <div className="md:hidden col-span-full text-center">
-                    <div className="text-sm font-medium text-white">{s.year}</div>
-                    <div className="text-xs text-muted-foreground">{s.subtitle}</div>
-                  </div>
-
-                  {/* Year labels on sides for md+ */}
-                  <div className={`hidden md:block absolute ${
-                    isLeft ? "-translate-x-[calc(50%+1rem)] left-1/2" : "translate-x-[calc(50%+1rem)] left-1/2"
-                  } text-white text-sm font-semibold mt-[-6px]`}>
-                    {s.year}
-                  </div>
                 </li>
               );
             })}

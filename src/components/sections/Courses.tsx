@@ -46,7 +46,7 @@ const Courses = () => {
         <header className="text-center mb-12 sm:mb-16">
           <h2 className="text-3xl sm:text-4xl font-semibold bg-gradient-to-r from-green-400 to-blue-500 bg-clip-text text-transparent">Courses & Certifications</h2>
           <p className="text-muted-foreground mt-3 max-w-2xl mx-auto">
-            A curated selection of courses and credentials that shaped my ML/AI journey.
+            Courses and credentials behind the machine learning work above.
           </p>
         </header>
 
