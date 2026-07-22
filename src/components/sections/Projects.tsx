@@ -1,37 +1,50 @@
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
+import { Github, Linkedin, ExternalLink } from "lucide-react";
 
 const projects = [
   {
-    title: "Binary Image Classification Model",
-    stack: ["Python", "TensorFlow", "Keras", "OpenCV", "NumPy", "Scikit-learn", "Matplotlib", "Seaborn", "Pandas", "SciPy"],
-    description: "A binary image classification model that can classify images into two classes: 'cat' and 'dog'.",
+    title: "PodBang – Agentic AI Podcast Automation Platform",
+    stack: ["LLMs", "API" , "N8N", "Prompt Engineering", "React", "node"],
+    description: "PodBang is an Agentic AI-powered platform that automates the end-to-end podcast creation workflow. It intelligently plans, generates, refines, and publishes podcast content with minimal human intervention by using autonomous AI agents.",
+    githubUrl: "https://github.com/Eyaas-Ajmal/pod-AI",
+    linkedInUrl: "https://www.linkedin.com/posts/eyaasajmal_ai-agenticai-automation-activity-7399622920106332160-VWfj?utm_source=share&utm_medium=member_desktop&rcm=ACoAAEIKCqoBFFLCLy__iBN0AHNFDrJYuEN2WAo",
   },
   {
     title: "Pet Universe",
     stack: ["React", "Node.js", "Express", "MongoDB", "Tailwind CSS", "Redux", "JWT", "Stripe","GIT"],
     description: "A full‑stack social and marketplace platform for pet lovers.",
+    githubUrl: "",
+    linkedInUrl: "",
   },
   {
     title: "Smart Ticket Support System",
     stack: ["React", "Node.js", "Express", "MongoDB", "Tailwind CSS", "Redux", "JWT", "Stripe", "Python", "Flask", "MySQL"],
     description: "A smart ticket support system for managing customer queries and support tickets.",
+    githubUrl: "",
+    linkedInUrl: "",
   },
   {
     title: "Library Management System",
     stack: ["PHP", "HTML", "CSS", "JavaScript","GIT"],
     description: "A complete library system with cataloging, lending, and admin dashboards.",
+    githubUrl: "",
+    linkedInUrl: "",
   },
   {
     title: "Computer Inventory Management",
     stack: ["Java", "MySQL", "JDBC", "Tomcat","GIT"],
     description: "Track hardware assets, lifecycle, and utilization with reports.",
+    githubUrl: "",
+    linkedInUrl: "",
   },
   {
     title: "My Portfolio Website",
     stack: ["React", "Tailwind CSS", "Vite", "TypeScript", "Shadcn UI", "Framer Motion", "Vercel", "GSAP","GIT"],
     description: "My Portfolio Website, your viewing it currently",
+    githubUrl: "",
+    linkedInUrl: "",
   }
 ];
 
@@ -77,9 +90,37 @@ const ProjectCard = ({ p }: { p: (typeof projects)[number] }) => {
             <DialogHeader>
               <DialogTitle>{p.title}</DialogTitle>
             </DialogHeader>
-            <div className="space-y-2 text-sm text-muted-foreground">
-              <p>{p.description}</p>
-              <p><span className="text-foreground">Tech:</span> {p.stack.join(", ")}</p>
+            <div className="space-y-4">
+              <div className="space-y-2 text-sm text-muted-foreground">
+                <p>{p.description}</p>
+                <p><span className="text-foreground">Tech:</span> {p.stack.join(", ")}</p>
+              </div>
+              {((p.githubUrl && p.githubUrl.trim() !== "") || (p.linkedInUrl && p.linkedInUrl.trim() !== "")) && (
+                <div className="flex flex-wrap gap-3 pt-2">
+                  {p.githubUrl && p.githubUrl.trim() !== "" && (
+                    <Button
+                      variant="outline"
+                      className="flex items-center gap-2"
+                      onClick={() => window.open(p.githubUrl, "_blank", "noopener,noreferrer")}
+                    >
+                      <Github className="w-4 h-4" />
+                      View GitHub Repo
+                      <ExternalLink className="w-3 h-3" />
+                    </Button>
+                  )}
+                  {p.linkedInUrl && p.linkedInUrl.trim() !== "" && (
+                    <Button
+                      variant="outline"
+                      className="flex items-center gap-2"
+                      onClick={() => window.open(p.linkedInUrl, "_blank", "noopener,noreferrer")}
+                    >
+                      <Linkedin className="w-4 h-4" />
+                      View LinkedIn Post
+                      <ExternalLink className="w-3 h-3" />
+                    </Button>
+                  )}
+                </div>
+              )}
             </div>
           </DialogContent>
         </Dialog>
