@@ -4,30 +4,48 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
+// Ascending, one entry per year from the start of the degree through to
+// expected graduation. Nothing here is projected except the 2027 entry, which
+// is labelled as expected.
 const steps = [
   {
-    year: "2026",
-    title: "Undergraduate Research",
-    subtitle: "Current",
+    year: "2023",
+    title: "Started BSc (Hons) IT — Data Science, SLIIT",
+    subtitle: "Degree begins",
     details:
-      "Satellite-based flood risk assessment for Sri Lanka. I own the predictive risk model and the decision dashboard built over it.",
-    status: [{ label: "In Progress", tone: "primary" }],
+      "Began the degree at the Sri Lanka Institute of Information Technology. Coursework in machine learning, data mining, big data analytics, database systems and cloud-driven solutions.",
+    status: [{ label: "Year 1", tone: "primary" }],
   },
   {
     year: "2024",
     title: "Purchasing Manager — Sillara Agri Tech",
     subtitle: "Present",
     details:
-      "Automated the daily procurement pricing workflow, replacing a manual multi-step process. Built the margin logic across fresh produce and packaged goods.",
+      "Automated the daily procurement pricing workflow, replacing a manual multi-step process. Built the margin logic across fresh produce and packaged goods, and took on the EDA, cleaning and consolidation behind it.",
     status: [{ label: "Current role", tone: "success" }],
   },
   {
-    year: "2023",
-    title: "BSc (Hons) IT — Data Science, SLIIT",
-    subtitle: "Expected 2027",
+    year: "2025",
+    title: "Machine learning & AI projects",
+    subtitle: "Applied work",
     details:
-      "Machine learning, data mining, big data analytics, database systems, cloud-driven solutions. CGPA 3.56.",
-    status: [{ label: "Final year", tone: "primary" }],
+      "Asteroid Orbit Viewer — scikit-learn models predicting Earth-impact risk from orbital data. AI Code Reviewer. PodBang, an agentic podcast automation platform.",
+    status: [{ label: "Shipped", tone: "success" }],
+  },
+  {
+    year: "2026",
+    title: "Undergraduate research — flood risk",
+    subtitle: "Current",
+    details:
+      "Satellite-based flood risk assessment for Sri Lanka. I own the predictive risk model and the decision dashboard built over it. Also built WashCO, a multi-vendor booking platform.",
+    status: [{ label: "In Progress", tone: "primary" }],
+  },
+  {
+    year: "2027",
+    title: "Graduation",
+    subtitle: "Expected",
+    details: "BSc (Hons) in Information Technology, Data Science specialisation. CGPA 3.56 to date.",
+    status: [{ label: "Expected", tone: "primary" }],
   },
 ];
 
