@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#4ade80" />
+      <stop offset="100%" stop-color="#3b82f6" />
+    </linearGradient>
+    <radialGradient id="glowA" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0%" stop-color="#4ade80" stop-opacity="0.20" />
+      <stop offset="100%" stop-color="#4ade80" stop-opacity="0" />
+    </radialGradient>
+    <radialGradient id="glowB" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0%" stop-color="#3b82f6" stop-opacity="0.22" />
+      <stop offset="100%" stop-color="#3b82f6" stop-opacity="0" />
+    </radialGradient>
+  </defs>
+
+  <!-- navy background: hsl(222.2 84% 4.9%) -->
+  <rect width="1200" height="630" fill="#020817" />
+  <ellipse cx="120" cy="40" rx="620" ry="420" fill="url(#glowA)" />
+  <ellipse cx="1090" cy="60" rx="620" ry="420" fill="url(#glowB)" />
+
+  <!-- accent rule -->
+  <rect x="80" y="150" width="88" height="5" rx="2.5" fill="url(#accent)" />
+
+  <text x="80" y="268" font-family="Space Grotesk, Segoe UI, Helvetica Neue, Arial, sans-serif"
+        font-size="96" font-weight="700" fill="#f8fafc" letter-spacing="-2">Eyaas Ajmal</text>
+
+  <text x="80" y="348" font-family="Space Grotesk, Segoe UI, Helvetica Neue, Arial, sans-serif"
+        font-size="46" font-weight="600" fill="url(#accent)">Machine learning for flood risk in Sri Lanka</text>
+
+  <text x="80" y="420" font-family="Space Grotesk, Segoe UI, Helvetica Neue, Arial, sans-serif"
+        font-size="30" font-weight="400" fill="#94a3b8">Final-year Data Science undergraduate at SLIIT</text>
+
+  <!-- footer row -->
+  <rect x="80" y="486" width="1040" height="1" fill="#1e293b" />
+  <text x="80" y="546" font-family="JetBrains Mono, Consolas, Menlo, monospace"
+        font-size="26" fill="#4ade80">eyaas.dev</text>
+  <text x="1120" y="546" text-anchor="end"
+        font-family="Space Grotesk, Segoe UI, Helvetica Neue, Arial, sans-serif"
+        font-size="24" fill="#64748b">Python · scikit-learn · pandas · SQL</text>
+</svg>
