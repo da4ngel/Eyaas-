@@ -78,7 +78,63 @@
   </head>
 
   <body>
-    <div id="root"></div>
+    <!--
+      The markup inside #root is a static fallback so that crawlers and any
+      client that does not execute JavaScript receive real content in the
+      initial HTML response, rather than an empty shell.
+
+      React's createRoot().render() clears this container on mount, so users
+      never see it. It is DUPLICATED CONTENT: if you change the headline in
+      Hero.tsx, or the intro or project list in About.tsx / Projects.tsx,
+      update it here too.
+    -->
+    <div id="root">
+      <h1>Eyaas Ajmal</h1>
+      <p><strong>Machine learning for flood risk in Sri Lanka</strong></p>
+      <p>
+        Final-year Data Science undergraduate at SLIIT. I build forecasting models on real
+        environmental data — and the dashboards that make them usable. Looking for a data
+        science / machine learning internship.
+      </p>
+
+      <h2>About</h2>
+      <p>
+        I am in my final year of a BSc (Hons) in Information Technology specialising in Data
+        Science at the Sri Lanka Institute of Information Technology (SLIIT), where I hold a
+        CGPA of 3.56. My undergraduate research is on satellite-based flood risk modelling for
+        Sri Lanka; I own the predictive risk model and the decision dashboard built on top of it.
+      </p>
+      <p>
+        Alongside my degree I work as Purchasing Manager at Sillara Agri Tech, where I replaced
+        a manual, multi-step daily procurement pricing process with an automated pipeline and
+        built the margin logic behind it.
+      </p>
+
+      <h2>Projects</h2>
+      <ul>
+        <li>Flood Risk Prediction &amp; Decision Dashboard — satellite-based flood risk modelling for Sri Lanka</li>
+        <li>Asteroid Orbit Viewer — scikit-learn models over orbital data with an interactive visualisation layer</li>
+        <li>AI Code Reviewer — LLM-based code review assistant</li>
+        <li>PodBang — agentic AI podcast automation platform</li>
+        <li>WashCO — multi-vendor car wash booking platform</li>
+        <li>Pet Universe — social and marketplace platform for pet owners</li>
+        <li>Smart Ticket Support System — customer support ticket management</li>
+      </ul>
+
+      <h2>Skills</h2>
+      <p>
+        Python, R, SQL, JavaScript, Java · scikit-learn, pandas, NumPy, time-series forecasting,
+        feature engineering, model validation · Power BI, Matplotlib · React, Node.js, Express,
+        PostgreSQL, Supabase, Git · LLM APIs, prompt engineering, n8n
+      </p>
+
+      <h2>Contact</h2>
+      <p>
+        <a href="mailto:eyaasofficial@gmail.com">eyaasofficial@gmail.com</a> ·
+        <a href="https://github.com/Eyaas-Ajmal">GitHub</a> ·
+        <a href="https://www.linkedin.com/in/eyaas-ajmal-da-4ngel/">LinkedIn</a>
+      </p>
+    </div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
