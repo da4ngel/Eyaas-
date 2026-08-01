@@ -181,6 +181,12 @@ All colors MUST be HSL.
     text-shadow: 0 0 20px hsl(var(--accent) / 0.5);
   }
 
+  /* Lets TiltCard children share the card's 3D space so hover lift reads as
+     depth rather than a flat scale. */
+  .preserve-3d {
+    transform-style: preserve-3d;
+  }
+
   .cursor-glow {
     position: fixed;
     top: 0;
@@ -193,6 +199,29 @@ All colors MUST be HSL.
     background: radial-gradient(closest-side, hsl(var(--accent) / 0.15), transparent);
     z-index: 10;
     mix-blend-mode: screen;
+  }
+
+  /* Static stand-in for the WebGL flow layer (src/three/FlowField). Shown on
+     no-WebGL / low-end / reduced-motion devices via the use3D() gate. A slow
+     drift of green→blue radial blobs — the cheapest possible "flow". */
+  .flow-fallback {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(40rem 40rem at 15% 20%, rgba(74, 222, 128, 0.14), transparent 60%),
+      radial-gradient(45rem 45rem at 85% 30%, rgba(59, 130, 246, 0.14), transparent 60%),
+      radial-gradient(38rem 38rem at 50% 90%, rgba(74, 222, 128, 0.1), transparent 60%);
+    background-size: 200% 200%;
+    animation: flow-drift 32s ease-in-out infinite alternate;
+  }
+}
+
+@keyframes flow-drift {
+  0% {
+    background-position: 0% 0%, 100% 0%, 50% 100%;
+  }
+  100% {
+    background-position: 30% 40%, 70% 50%, 40% 60%;
   }
 }
 

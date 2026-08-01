@@ -1,53 +1,11 @@
 import { useEffect } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { journey as steps } from "@/content/site";
+import TiltCard from "@/components/atoms/TiltCard";
+import Parallax from "@/components/atoms/Parallax";
 
 gsap.registerPlugin(ScrollTrigger);
-
-// Ascending, one entry per year from the start of the degree through to
-// expected graduation. Nothing here is projected except the 2027 entry, which
-// is labelled as expected.
-const steps = [
-  {
-    year: "2023",
-    title: "Started BSc (Hons) IT — Data Science, SLIIT",
-    subtitle: "Degree begins",
-    details:
-      "Began the degree at the Sri Lanka Institute of Information Technology. Coursework in machine learning, data mining, big data analytics, database systems and cloud-driven solutions.",
-    status: [{ label: "Year 1", tone: "primary" }],
-  },
-  {
-    year: "2024",
-    title: "Purchasing Manager — Sillara Agri Tech",
-    subtitle: "Present",
-    details:
-      "Automated the daily procurement pricing workflow, replacing a manual multi-step process. Built the margin logic across fresh produce and packaged goods, and took on the EDA, cleaning and consolidation behind it.",
-    status: [{ label: "Current role", tone: "success" }],
-  },
-  {
-    year: "2025",
-    title: "Machine learning & AI projects",
-    subtitle: "Applied work",
-    details:
-      "Asteroid Orbit Viewer — scikit-learn models predicting Earth-impact risk from orbital data. AI Code Reviewer. PodBang, an agentic podcast automation platform.",
-    status: [{ label: "Shipped", tone: "success" }],
-  },
-  {
-    year: "2026",
-    title: "Undergraduate research — flood risk",
-    subtitle: "Current",
-    details:
-      "Satellite-based flood risk assessment for Sri Lanka. I own the predictive risk model and the decision dashboard built over it. Also built WashCO, a multi-vendor booking platform.",
-    status: [{ label: "In Progress", tone: "primary" }],
-  },
-  {
-    year: "2027",
-    title: "Graduation",
-    subtitle: "Expected",
-    details: "BSc (Hons) in Information Technology, Data Science specialisation. CGPA 3.56 to date.",
-    status: [{ label: "Expected", tone: "primary" }],
-  },
-];
 
 const MLJourney = () => {
   useEffect(() => {
@@ -81,12 +39,12 @@ const MLJourney = () => {
   return (
     <section id="ml" className="py-16 sm:py-24">
       <div className="container mx-auto px-4">
-        <header className="text-center mb-12 sm:mb-16">
+        <Parallax speed={-30} className="text-center mb-12 sm:mb-16">
           <h2 className="text-3xl sm:text-4xl font-semibold bg-gradient-to-r from-green-400 to-blue-500 bg-clip-text text-transparent">Education &amp; Experience</h2>
           <p className="text-muted-foreground mt-3 max-w-2xl mx-auto">
             Where I study, where I work, and what I&apos;m researching.
           </p>
-        </header>
+        </Parallax>
 
         <div className="relative">
           {/* Center line for md+ */}
@@ -100,7 +58,7 @@ const MLJourney = () => {
                   {/* Left column (content on left for even rows) */}
                   <div className={`md:col-span-5 ${isLeft ? "order-2 md:order-1 text-right" : "order-2"}`}>
                     {isLeft && (
-                      <article className="inline-block rounded-xl border bg-card/60 backdrop-blur-sm text-card-foreground px-5 py-4 shadow-sm">
+                      <TiltCard glare className="inline-block rounded-xl border bg-card/60 backdrop-blur-sm text-card-foreground px-5 py-4 shadow-sm">
                         <h3 className="text-lg font-semibold">{s.title}</h3>
                         <p className="text-sm text-muted-foreground mt-1">{s.details}</p>
                         <div className="mt-3 flex flex-wrap gap-2 justify-end">
@@ -119,7 +77,7 @@ const MLJourney = () => {
                             </span>
                           ))}
                         </div>
-                      </article>
+                      </TiltCard>
                     )}
                   </div>
 
@@ -135,7 +93,7 @@ const MLJourney = () => {
                   {/* Right column (content on right for odd rows) */}
                   <div className={`md:col-span-5 ${isLeft ? "order-3" : "order-3 md:order-3"}`}>
                     {!isLeft && (
-                      <article className="inline-block rounded-xl border bg-card/60 backdrop-blur-sm text-card-foreground px-5 py-4 shadow-sm">
+                      <TiltCard glare className="inline-block rounded-xl border bg-card/60 backdrop-blur-sm text-card-foreground px-5 py-4 shadow-sm">
                         <h3 className="text-lg font-semibold">{s.title}</h3>
                         <p className="text-sm text-muted-foreground mt-1">{s.details}</p>
                         <div className="mt-3 flex flex-wrap gap-2">
@@ -154,7 +112,7 @@ const MLJourney = () => {
                             </span>
                           ))}
                         </div>
-                      </article>
+                      </TiltCard>
                     )}
                   </div>
 

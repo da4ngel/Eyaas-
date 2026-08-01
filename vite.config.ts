@@ -20,6 +20,20 @@ export default defineConfig(({ mode }) => ({
     },
   },
   optimizeDeps: {
-    include: ["@splinetool/react-spline", "@splinetool/runtime"],
+    include: ["three", "@react-three/fiber", "@react-three/drei"],
+  },
+  build: {
+    rollupOptions: {
+      output: {
+        // Keep the renderer in its own chunk. three.js is only reached through
+        // the lazy imports of NeuralConstellation and FlowField, so anyone on
+        // the static / CSS fallback never fetches it — splitting it out is what
+        // makes that saving visible.
+        manualChunks: {
+          three: ["three"],
+          react: ["react", "react-dom", "react-router-dom"],
+        },
+      },
+    },
   },
 }));
