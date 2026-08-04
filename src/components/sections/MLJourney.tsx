@@ -54,14 +54,17 @@ const MLJourney = () => {
             {steps.map((s, i) => {
               const isLeft = i % 2 === 0;
               return (
-                <li key={s.year} className="jl-step grid md:grid-cols-12 gap-6 items-center">
-                  {/* Left column (content on left for even rows) */}
-                  <div className={`md:col-span-5 ${isLeft ? "order-2 md:order-1 text-right" : "order-2"}`}>
+                <li key={s.year} className="jl-step grid md:grid-cols-12 gap-4 md:gap-6 items-center">
+                  {/* Left column (content on left for even rows). The
+                      right-alignment is md-only: below that the grid is a
+                      single column, and alternating the alignment row by row
+                      made the timeline read as ragged rather than as a spine. */}
+                  <div className={`md:col-span-5 ${isLeft ? "order-2 md:order-1 md:text-right" : "order-2"}`}>
                     {isLeft && (
-                      <TiltCard glare className="inline-block rounded-xl border bg-card/60 backdrop-blur-sm text-card-foreground px-5 py-4 shadow-sm">
+                      <TiltCard glare className="block w-full md:inline-block md:w-auto rounded-xl border bg-card/60 backdrop-blur-sm text-card-foreground px-5 py-4 shadow-sm">
                         <h3 className="text-lg font-semibold">{s.title}</h3>
                         <p className="text-sm text-muted-foreground mt-1">{s.details}</p>
-                        <div className="mt-3 flex flex-wrap gap-2 justify-end">
+                        <div className="mt-3 flex flex-wrap gap-2 md:justify-end">
                           {s.status.map((b) => (
                             <span
                               key={b.label}
@@ -83,17 +86,19 @@ const MLJourney = () => {
 
                   {/* Middle marker: year, dot, subtitle. Kept in the centre grid
                       column so it lines up with the vertical rule at every
-                      breakpoint. */}
-                  <div className="md:col-span-2 order-1 md:order-2 flex flex-col items-center justify-center gap-2">
+                      breakpoint. Below md there is no rule to line up with, so
+                      it lays out as a single left-aligned caption row above its
+                      card rather than a stacked column floating in the middle. */}
+                  <div className="md:col-span-2 order-1 md:order-2 flex flex-row md:flex-col items-center justify-start md:justify-center gap-3 md:gap-2">
                     <div className="text-sm font-semibold text-white">{s.year}</div>
-                    <span className="block h-3 w-3 rounded-full bg-white ring-4 ring-background" />
-                    <div className="text-xs text-muted-foreground text-center">{s.subtitle}</div>
+                    <span className="block h-3 w-3 shrink-0 rounded-full bg-white ring-4 ring-background" />
+                    <div className="text-xs text-muted-foreground md:text-center">{s.subtitle}</div>
                   </div>
 
                   {/* Right column (content on right for odd rows) */}
                   <div className={`md:col-span-5 ${isLeft ? "order-3" : "order-3 md:order-3"}`}>
                     {!isLeft && (
-                      <TiltCard glare className="inline-block rounded-xl border bg-card/60 backdrop-blur-sm text-card-foreground px-5 py-4 shadow-sm">
+                      <TiltCard glare className="block w-full md:inline-block md:w-auto rounded-xl border bg-card/60 backdrop-blur-sm text-card-foreground px-5 py-4 shadow-sm">
                         <h3 className="text-lg font-semibold">{s.title}</h3>
                         <p className="text-sm text-muted-foreground mt-1">{s.details}</p>
                         <div className="mt-3 flex flex-wrap gap-2">

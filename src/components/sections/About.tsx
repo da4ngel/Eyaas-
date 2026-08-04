@@ -21,10 +21,14 @@ const About = () => {
           <div className="grid md:grid-cols-12 gap-8 items-start">
             {/* Left: Portrait + Quick Stats */}
             <Parallax speed={-24} className="md:col-span-4 space-y-6 sm:max-w-sm md:max-w-none">
+              {/* The portrait is 3:4, so at full mobile width it runs well over
+                  a screen tall on its own and pushes the intro copy off the
+                  first scroll. The cap is on the card rather than the Parallax
+                  wrapper so the stat tiles below keep the full column. */}
               <TiltCard
                 intensity={10}
                 glare
-                className="relative rounded-2xl border border-primary/20 shadow-[var(--shadow-glow)] bg-gradient-to-br from-primary/10 to-accent/10 p-2"
+                className="relative mx-auto max-w-[15rem] sm:max-w-none rounded-2xl border border-primary/20 shadow-[var(--shadow-glow)] bg-gradient-to-br from-primary/10 to-accent/10 p-2"
               >
                 <AspectRatio ratio={3 / 4}>
                   <img

@@ -1,6 +1,7 @@
 import { Canvas, useFrame } from "@react-three/fiber";
 import { useMemo, useRef } from "react";
 import * as THREE from "three";
+import type { Quality3D } from "@/three/use3D";
 
 /**
  * The site-wide flow layer: a field of particles advected along a curl-noise
@@ -21,8 +22,21 @@ import * as THREE from "three";
 const GREEN = new THREE.Color("#4ade80"); // green-400
 const BLUE = new THREE.Color("#3b82f6"); // blue-500
 
-const COUNT = 2500; // particle count — the one knob for the perf/density trade
 const BOUNDS = 9; // half-extent of the cube the flow lives in; wrap at ±BOUNDS
+
+/**
+ * Per-tier cost. Particles are advected on the CPU each frame, so `count` is
+ * the dominant knob; `dpr` is the other, since a 3x phone screen would
+ * otherwise shade nine times the pixels of a 1x one.
+ *
+ * The low tier also draws slightly larger, more opaque points: at 900 particles
+ * spread over a phone-sized viewport the default 0.045/0.55 reads as a faint
+ * haze rather than a flow.
+ */
+const TIERS = {
+  high: { count: 2500, dpr: [1, 2] as [number, number], size: 0.045, opacity: 0.55 },
+  low: { count: 900, dpr: [1, 1.5] as [number, number], size: 0.07, opacity: 0.7 },
+};
 
 /**
  * Divergence-free (curl) flow field. Taking the curl of a vector potential
@@ -42,7 +56,8 @@ function curl(x: number, y: number, z: number, out: THREE.Vector3) {
   out.set(dP3dy - dP2dz, dP1dz - dP3dx, dP2dx - dP1dy);
 }
 
-function Particles() {
+function Particles({ tier }: { tier: (typeof TIERS)[keyof typeof TIERS] }) {
+  const { count: COUNT, size, opacity } = tier;
   const points = useRef<THREE.Points>(null);
   const group = useRef<THREE.Group>(null);
   const scratch = useRef(new THREE.Vector3()).current;
@@ -62,7 +77,7 @@ function Particles() {
       colors.set([c.r, c.g, c.b], i * 3);
     }
     return { positions, colors };
-  }, []);
+  }, [COUNT]);
 
   useFrame((state, rawDelta) => {
     const geo = points.current?.geometry;
@@ -120,11 +135,11 @@ function Particles() {
           <bufferAttribute attach="attributes-color" args={[colors, 3]} />
         </bufferGeometry>
         <pointsMaterial
-          size={0.045}
+          size={size}
           sizeAttenuation
           vertexColors
           transparent
-          opacity={0.55}
+          opacity={opacity}
           depthWrite={false}
           blending={THREE.AdditiveBlending}
         />
@@ -133,15 +148,20 @@ function Particles() {
   );
 }
 
-export function FlowField() {
+export function FlowField({ quality = "high" }: { quality?: Exclude<Quality3D, "off"> }) {
+  const tier = TIERS[quality];
+
   return (
     <Canvas
       className="!absolute inset-0"
-      dpr={[1, 2]}
+      dpr={tier.dpr}
       gl={{ alpha: true, antialias: false, powerPreference: "high-performance" }}
-      camera={{ position: [0, 0, 12], fov: 55 }}
+      // A wider field of view on the low tier pulls more of the flow into a
+      // narrow viewport, so the backdrop still reads as a field of particles
+      // rather than the handful that happen to fall inside a phone's frustum.
+      camera={{ position: [0, 0, 12], fov: quality === "low" ? 70 : 55 }}
     >
-      <Particles />
+      <Particles tier={tier} />
     </Canvas>
   );
 }

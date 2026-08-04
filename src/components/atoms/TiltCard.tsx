@@ -1,5 +1,6 @@
 import { ReactNode, useRef, useState } from "react";
 import { motion, useMotionValue, useSpring, useTransform, useReducedMotion } from "framer-motion";
+import { useCoarsePointer } from "@/hooks/use-coarse-pointer";
 
 /**
  * A card wrapper that tilts toward the cursor in 3D and lifts on hover.
@@ -9,6 +10,12 @@ import { motion, useMotionValue, useSpring, useTransform, useReducedMotion } fro
  * (the same useMotionValue + useSpring approach as MagneticButton) rather than
  * snapping, and the rotation is driven through framer's own rotateX/rotateY
  * style props so it composes cleanly with the whileHover scale.
+ *
+ * Touch: there is no cursor to tilt toward and no hover state to enter, so on a
+ * coarse pointer the card gets the touch equivalent — it presses in under the
+ * finger. Wiring the tilt to touchmove instead would fight the scroll gesture,
+ * since on a phone every touch that crosses a card is someone scrolling past
+ * it. Previously these cards were completely inert on mobile.
  *
  * Accessibility: under prefers-reduced-motion it renders a plain, static div —
  * no listeners, no transforms — so reduced-motion users get the flat, readable
@@ -28,6 +35,7 @@ const SPRING = { stiffness: 250, damping: 20 };
 
 const TiltCard = ({ children, className, intensity = 7, glare = false }: TiltCardProps) => {
   const reduce = useReducedMotion();
+  const coarse = useCoarsePointer();
   const ref = useRef<HTMLDivElement>(null);
 
   // Normalized pointer position within the card, -0.5 … 0.5 on each axis.
@@ -47,6 +55,18 @@ const TiltCard = ({ children, className, intensity = 7, glare = false }: TiltCar
 
   if (reduce) {
     return <div className={className}>{children}</div>;
+  }
+
+  if (coarse) {
+    return (
+      <motion.div
+        className={className}
+        whileTap={{ scale: 0.975 }}
+        transition={{ type: "spring", ...SPRING }}
+      >
+        {children}
+      </motion.div>
+    );
   }
 
   const onMove = (e: React.MouseEvent<HTMLDivElement>) => {

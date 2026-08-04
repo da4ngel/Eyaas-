@@ -4,13 +4,13 @@ import MagneticButton from "@/components/atoms/MagneticButton";
 import Parallax from "@/components/atoms/Parallax";
 import { Button } from "@/components/ui/button";
 import { hero } from "@/content/site";
-import use3D from "@/three/use3D";
+import { useQuality3D } from "@/three/use3D";
 
 /**
  * The hero object owns three.js. Loading it lazily keeps the renderer out of
  * the first paint (the text below renders immediately) and out of the bundle
- * entirely for anyone on the static fallback — reduced-motion, low-end, or
- * no-WebGL — since the import only fires when <NeuralConstellation/> renders.
+ * entirely for anyone on the static fallback — reduced-motion or no-WebGL —
+ * since the import only fires when <NeuralConstellation/> renders.
  */
 const NeuralConstellation = lazy(() => import("@/three/NeuralConstellation"));
 
@@ -55,7 +55,7 @@ const NetworkFallback = () => (
 );
 
 const Hero = () => {
-  const enable3D = use3D();
+  const quality = useQuality3D();
 
   return (
     <section id="hero" className="relative pt-24 pb-12 sm:pt-28 sm:pb-16">
@@ -114,9 +114,9 @@ const Hero = () => {
           role="img"
           aria-label="Animated 3D neural network with signals flowing between the nodes"
         >
-          {enable3D ? (
+          {quality !== "off" ? (
             <Suspense fallback={<NetworkFallback />}>
-              <NeuralConstellation />
+              <NeuralConstellation quality={quality} />
             </Suspense>
           ) : (
             <NetworkFallback />

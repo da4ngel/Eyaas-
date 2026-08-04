@@ -104,10 +104,17 @@ All colors MUST be HSL.
 
   html {
     scroll-behavior: smooth;
+    /* Anchor jumps land under the fixed header without this. */
+    scroll-padding-top: 4.5rem;
   }
 
   body {
     @apply bg-background text-foreground;
+    /* Tilt, parallax and glare transforms can reach past the viewport edge on
+       a narrow screen, which otherwise leaves the page scrollable sideways.
+       Mirrored in the critical CSS in index.html so it holds before this
+       stylesheet loads. */
+    overflow-x: hidden;
   }
 
   /* Visible keyboard focus. The raw <a> elements in the header nav and the
@@ -213,6 +220,39 @@ All colors MUST be HSL.
       radial-gradient(38rem 38rem at 50% 90%, rgba(74, 222, 128, 0.1), transparent 60%);
     background-size: 200% 200%;
     animation: flow-drift 32s ease-in-out infinite alternate;
+  }
+
+  /* The blobs are sized in rem, so on a phone three 40rem circles cover the
+     whole viewport and average out into flat wash. Shrinking them keeps the
+     gradient reading as distinct drifting shapes. */
+  @media (max-width: 640px) {
+    .flow-fallback {
+      background:
+        radial-gradient(18rem 18rem at 12% 15%, rgba(74, 222, 128, 0.18), transparent 60%),
+        radial-gradient(20rem 20rem at 88% 32%, rgba(59, 130, 246, 0.18), transparent 60%),
+        radial-gradient(16rem 16rem at 50% 88%, rgba(74, 222, 128, 0.14), transparent 60%);
+      background-size: 200% 200%;
+    }
+  }
+}
+
+/* No cursor to follow on a touch device. CursorGlow also skips its rAF loop
+   there; this hides the element itself. */
+@media (pointer: coarse) {
+  .cursor-glow {
+    display: none;
+  }
+}
+
+/* Hover styling is misleading on touch: :hover sticks after a tap, so a card
+   left behind by a scroll keeps its lifted, glowing state. */
+@media (hover: none) {
+  .hover-scale:hover {
+    transform: none;
+  }
+
+  .story-link:hover::after {
+    transform: scaleX(0);
   }
 }
 

@@ -1,9 +1,60 @@
 <!DOCTYPE html>
-<html lang="en">
+<!-- class="dark" is set here rather than left to next-themes. ThemeProvider
+     forces the dark theme anyway, but it can only add the class once React has
+     mounted; until then the light :root tokens in index.css apply and the page
+     paints white. -->
+<html lang="en" class="dark">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <title>Eyaas Ajmal — Data Science Undergraduate | Machine Learning</title>
+
+    <!--
+      Critical CSS, inline so it applies on the very first frame — before the
+      bundle's stylesheet has been fetched and before any JavaScript runs.
+      Without this the load sequence showed a white page of unstyled headings
+      for as long as the bundle took to arrive.
+    -->
+    <style>
+      /* hsl(222.2 84% 4.9%) — the --background token from .dark in index.css.
+         Keep the two in sync. */
+      html {
+        background-color: #020817;
+        color-scheme: dark;
+      }
+
+      /* Tilt and parallax transforms can extend past the viewport edge on
+         narrow screens; without this they add a horizontal scrollbar. */
+      html,
+      body {
+        overflow-x: hidden;
+      }
+
+      /* The fallback markup in #root is real content for crawlers that do not
+         execute JavaScript, but it is unstyled and React discards it on mount.
+         Hiding it keeps it out of the first paint. Text-extracting crawlers
+         read the HTML source and ignore this rule; the <noscript> block below
+         restores it for browsers that will never run the bundle. */
+      #prerender-fallback {
+        display: none;
+      }
+    </style>
+    <noscript>
+      <style>
+        #prerender-fallback {
+          display: block;
+          max-width: 46rem;
+          margin: 0 auto;
+          padding: 2rem 1rem;
+          color: #e2e8f0;
+          font-family: "Space Grotesk", system-ui, sans-serif;
+          line-height: 1.65;
+        }
+        #prerender-fallback a {
+          color: #4ade80;
+        }
+      </style>
+    </noscript>
     <meta name="author" content="Eyaas Ajmal" />
     <meta
       name="description"
@@ -83,12 +134,16 @@
       client that does not execute JavaScript receive real content in the
       initial HTML response, rather than an empty shell.
 
-      React's createRoot().render() clears this container on mount, so users
-      never see it. It is DUPLICATED CONTENT: if you change the headline in
-      Hero.tsx, or the intro or project list in About.tsx / Projects.tsx,
-      update it here too.
+      It is hidden by the inline #prerender-fallback rule in <head> and shown
+      again by the <noscript> override there, so a browser running the bundle
+      never paints it. React's createRoot().render() then clears the container
+      on mount.
+
+      It is DUPLICATED CONTENT: if you change the headline in Hero.tsx, or the
+      intro or project list in About.tsx / Projects.tsx, update it here too.
     -->
     <div id="root">
+      <div id="prerender-fallback">
       <h1>Eyaas Ajmal</h1>
       <p><strong>Machine learning for flood risk in Sri Lanka</strong></p>
       <p>
@@ -134,6 +189,7 @@
         <a href="https://github.com/Eyaas-Ajmal">GitHub</a> ·
         <a href="https://www.linkedin.com/in/eyaas-ajmal-da-4ngel/">LinkedIn</a>
       </p>
+      </div>
     </div>
     <script type="module" src="/src/main.tsx"></script>
   </body>

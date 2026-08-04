@@ -2,6 +2,7 @@ import { Canvas, useFrame } from "@react-three/fiber";
 import { Float } from "@react-three/drei";
 import { useMemo, useRef } from "react";
 import * as THREE from "three";
+import type { Quality3D } from "@/three/use3D";
 
 /**
  * The hero centrepiece: a layered feed-forward neural network living in 3D,
@@ -199,13 +200,24 @@ function Network() {
   );
 }
 
-export function NeuralConstellation() {
+export function NeuralConstellation({
+  quality = "high",
+}: {
+  quality?: Exclude<Quality3D, "off">;
+}) {
+  const low = quality === "low";
+
   return (
     <Canvas
       className="!absolute inset-0"
-      dpr={[1, 2]}
-      gl={{ antialias: true, alpha: true, powerPreference: "high-performance" }}
-      camera={{ position: [0, 0, 6], fov: 45 }}
+      // The network is only ~70 edges, so geometry is never the bottleneck on a
+      // phone — fill rate is. Capping the pixel ratio and dropping MSAA is
+      // enough; the scene itself stays whole.
+      dpr={low ? [1, 1.5] : [1, 2]}
+      gl={{ antialias: !low, alpha: true, powerPreference: "high-performance" }}
+      // Pulled back on the low tier so the full graph fits the short, wide box
+      // the hero gives it on a phone (h-[320px]) instead of being cropped.
+      camera={{ position: [0, 0, low ? 7.5 : 6], fov: 45 }}
     >
       <Network />
     </Canvas>
