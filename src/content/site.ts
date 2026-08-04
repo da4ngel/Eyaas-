@@ -96,9 +96,12 @@ export const about = {
     src: "/lovable-uploads/80607c52-3ca7-47d9-bf90-c7ccf791a76e.png",
     alt: "Eyaas Ajmal, Data Science undergraduate at SLIIT",
   },
+  // A PDF with a real text layer, not the old JPG scan — an applicant tracking
+  // system reading an image gets nothing. Source of truth is scripts/cv/cv.html;
+  // regenerate with `npm run build:cv` after editing it.
   resume: {
-    href: "/lovable-uploads/Eyaas-CV.jpg",
-    downloadAs: "Eyaas-Ajmal-CV.jpg",
+    href: "/Eyaas-Ajmal-CV.pdf",
+    downloadAs: "Eyaas-Ajmal-CV.pdf",
   },
 };
 

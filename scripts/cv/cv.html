@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<!-- Chrome's print-to-pdf uses <title> as the PDF document title. Keep it as
+     the person's name: some ATS read it as the candidate identifier. -->
+<title>Eyaas Ajmal - Data Science and Machine Learning CV</title>
+<meta name="author" content="Eyaas Ajmal" />
+<style>
+  /* ATS parsing rules this stylesheet is built around:
+     - one linear column, no tables, no floats, no multi-column, no text boxes
+     - no images, icons or web fonts; only fonts every parser can map back to text
+     - contact details live in the body flow, never in a @page margin box
+       (headers/footers are dropped by most resume parsers)
+     - real bullet characters, real hyphens; no glyphs that decode oddly */
+
+  @page {
+    size: A4;
+    margin: 14mm 15mm;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 10.2pt;
+    line-height: 1.38;
+    color: #000;
+  }
+
+  /* Name and headline */
+  h1 {
+    font-size: 19pt;
+    letter-spacing: 0.4pt;
+    margin-bottom: 1.5mm;
+  }
+
+  .headline {
+    font-size: 11pt;
+    font-weight: bold;
+    margin-bottom: 1.8mm;
+  }
+
+  .contact {
+    font-size: 9.6pt;
+    margin-bottom: 4mm;
+  }
+
+  /* Links print as their own text, so the URL survives even if the annotation
+     is stripped. No shortening tricks. */
+  a { color: #000; text-decoration: none; }
+
+  h2 {
+    font-size: 11pt;
+    letter-spacing: 0.6pt;
+    text-transform: uppercase;
+    border-bottom: 1px solid #000;
+    padding-bottom: 0.8mm;
+    margin: 4.2mm 0 2.2mm;
+  }
+
+  /* Keep a heading with the block it introduces when the page breaks. */
+  h2, h3 { break-after: avoid; page-break-after: avoid; }
+  .entry { break-inside: avoid; page-break-inside: avoid; margin-bottom: 2.8mm; }
+  .entry:last-child { margin-bottom: 0; }
+
+  h3 {
+    font-size: 10.4pt;
+    font-weight: bold;
+  }
+
+  .meta {
+    font-size: 9.8pt;
+    font-style: italic;
+    margin-bottom: 0.8mm;
+  }
+
+  ul { list-style: none; }
+
+  li {
+    padding-left: 4.5mm;
+    text-indent: -4.5mm;
+    margin-bottom: 0.9mm;
+  }
+
+  li::before { content: "\2022  "; }
+
+  p { margin-bottom: 1mm; }
+  p:last-child { margin-bottom: 0; }
+
+  .skills p { margin-bottom: 1.2mm; }
+</style>
+</head>
+<body>
+
+  <h1>Eyaas Ajmal</h1>
+  <div class="headline">Data Science &amp; Machine Learning Undergraduate</div>
+  <div class="contact">
+    Colombo, Sri Lanka | +94 75 116 4040 | eyaasofficial@gmail.com<br />
+    https://eyaas.dev | https://www.linkedin.com/in/eyaas-ajmal-da-4ngel | https://github.com/Eyaas-Ajmal
+  </div>
+
+  <h2>Professional Summary</h2>
+  <p>
+    Final-year BSc (Hons) Data Science undergraduate (CGPA 3.56/4.00) seeking a data science or machine
+    learning internship. Currently running the predictive modelling and decision dashboard for a satellite-based
+    flood risk assessment study on the Kelani River Basin, forecasting flood events seven days ahead and
+    validating against 15 years of recorded events; paper targeted at ICTer 2026. Comfortable across the full
+    workflow: data cleaning, exploratory data analysis, feature engineering, model training, validation and
+    deployment into something a decision maker can use.
+  </p>
+
+  <h2>Technical Skills</h2>
+  <div class="skills">
+    <p><strong>Programming:</strong> Python, SQL, R, JavaScript, TypeScript, Java</p>
+    <p><strong>Machine Learning:</strong> scikit-learn, TensorFlow, regression, classification, time-series
+      forecasting, feature engineering, model validation, prompt engineering</p>
+    <p><strong>Data &amp; Analysis:</strong> pandas, NumPy, exploratory data analysis (EDA), data cleaning,
+      data wrangling, Matplotlib, Power BI, Microsoft Excel</p>
+    <p><strong>Databases:</strong> PostgreSQL, MySQL, MongoDB, Supabase</p>
+    <p><strong>Tools &amp; Platforms:</strong> Git, GitHub, Jupyter Notebook, Node.js (Express), React, n8n</p>
+  </div>
+
+  <h2>Education</h2>
+  <div class="entry">
+    <h3>BSc (Hons) in Information Technology - Data Science Specialisation</h3>
+    <div class="meta">Sri Lanka Institute of Information Technology (SLIIT) | 2023 - 2027 (Expected)</div>
+    <p>CGPA: 3.56 / 4.00</p>
+    <p>Relevant coursework: Machine Learning, Data Mining, Big Data Analytics, Database Systems,
+      Cloud-Driven Solutions</p>
+  </div>
+
+  <h2>Work Experience</h2>
+  <div class="entry">
+    <h3>Purchasing Manager</h3>
+    <div class="meta">Sillara Agri Tech | 2024 - Present</div>
+    <ul>
+      <li>Designed and automated the daily procurement pricing workflow, replacing a manual multi-step
+        process with a repeatable pipeline</li>
+      <li>Ran exploratory data analysis on supplier and purchasing datasets to surface pricing trends and
+        build margin logic across fresh produce and packaged goods categories</li>
+      <li>Cleaned, validated and consolidated data from multiple sources into a single reliable reporting
+        dataset used for daily pricing decisions</li>
+    </ul>
+  </div>
+
+  <h2>Projects</h2>
+
+  <div class="entry">
+    <h3>Flood Risk Prediction &amp; Decision Dashboard - Undergraduate Research</h3>
+    <div class="meta">2026 | Python, scikit-learn, pandas, NumPy, time-series forecasting, Matplotlib</div>
+    <ul>
+      <li>Built a machine learning model that forecasts Kelani River Basin flood events seven days ahead from
+        upstream rainfall and river-discharge data</li>
+      <li>Validated predictions against 15 years of recorded historical flood events (2010-2025)</li>
+      <li>Own the decision dashboard over the model output, turning forecasts into information a responder
+        can act on; paper targeted at ICTer 2026</li>
+    </ul>
+  </div>
+
+  <div class="entry">
+    <h3>Asteroid Orbit Viewer - Machine Learning &amp; Data Visualisation</h3>
+    <div class="meta">2025 | Python, scikit-learn, pandas, NumPy, classification, JavaScript</div>
+    <ul>
+      <li>Trained scikit-learn classification models on orbital element datasets to predict Earth-impact risk
+        for near-Earth objects</li>
+      <li>Built an interactive visualisation layer over the model outputs so predictions can be explored
+        rather than only read</li>
+    </ul>
+  </div>
+
+  <div class="entry">
+    <h3>PodBang - Agentic AI Podcast Automation</h3>
+    <div class="meta">2025 | LLM APIs, n8n, prompt engineering, React, Node.js</div>
+    <ul>
+      <li>Built an agentic platform where autonomous agents plan, generate, refine and publish podcast episode
+        content end to end with minimal human intervention</li>
+      <li>Source: https://github.com/Eyaas-Ajmal/pod-AI</li>
+    </ul>
+  </div>
+
+  <div class="entry">
+    <h3>AI Code Reviewer - GenAI Developer Tool</h3>
+    <div class="meta">2025 | LLM APIs, prompt engineering, Python, React</div>
+    <ul>
+      <li>LLM-based review assistant that analyses code quality, suggests refactors and translates between
+        programming languages</li>
+    </ul>
+  </div>
+
+  <div class="entry">
+    <h3>WashCO - Multi-Vendor Booking Platform</h3>
+    <div class="meta">2026 | React, Node.js, Express, PostgreSQL, Supabase</div>
+    <ul>
+      <li>Slot-based scheduling system for car wash vendors and customers, with vendor management and
+        role-based access control, replacing a manual process prone to double-bookings</li>
+    </ul>
+  </div>
+
+  <h2>Certifications &amp; Courses</h2>
+  <ul>
+    <li>Machine Learning Specialization - DeepLearning.AI and Stanford Online (Coursera), 2024</li>
+    <li>Machine Learning with Python - Simplilearn, 2025</li>
+    <li>Data Science Bootcamp - freeCodeCamp, 2023</li>
+    <li>Python for Data Analysis - freeCodeCamp, 2023</li>
+  </ul>
+
+  <h2>Activities</h2>
+  <ul>
+    <li>Member, Rotaract Club of SLIIT (2024 - 2026)</li>
+    <li>Rugby at Zahira College and university level</li>
+  </ul>
+
+  <h2>References</h2>
+  <ul>
+    <li>Dr. Kapila Dissanayaka, Professor, Sri Lanka Institute of Information Technology - kapila.d@sliit.lk</li>
+  </ul>
+
+</body>
+</html>
